@@ -6,6 +6,8 @@
 // @author       Nanoskript
 // @match        https://dynasty-scans.com/chapters/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=dynasty-scans.com
+// @downloadURL  https://github.com/nanoskript/dynasty-scans-proxy/raw/main/proxy.user.js
+// @supportURL   https://github.com/nanoskript/dynasty-scans-proxy/issues
 // @grant        none
 // @run-at       document-body
 // ==/UserScript==

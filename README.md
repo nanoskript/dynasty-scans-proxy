@@ -27,7 +27,15 @@ is fast.
 
 ## How do I use this?
 
-TODO
+1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension for your browser.
+2. Click [here](https://github.com/nanoskript/dynasty-scans-proxy/raw/main/proxy.user.js) to download the userscript.
+3. Click on install.
+4. You're done!
+
+If you're experiencing issues, or if the proxy is offline, disable the userscript in Tampermonkey's settings by clicking
+on
+Tampermonkey's icon near your browser's address bar. You can check if the proxy server is online
+by checking if [this page](https://dynasty-scans-proxy.nanoskript.dev/) loads.
 
 ## Caveats
 
