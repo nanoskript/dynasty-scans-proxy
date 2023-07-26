@@ -1,0 +1,9 @@
+[tool.pdm]
+[project]
+requires-python = ">=3.10"
+dependencies = [
+    "pillow>=10.0.0",
+    "aiohttp[speedups]>=3.8.5",
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.23.1",
+]
