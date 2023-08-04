@@ -31,6 +31,7 @@ data = [
 
 
 async def run_test():
+    buster = f"?t={time.time_ns()}"
     async with aiohttp.ClientSession() as session:
         total_difference = 0
         for entry in data:
@@ -39,16 +40,15 @@ async def run_test():
             # Request from proxy first to avoid
             # possible warm start advantage.
             start = time.time()
-            [p1, p2, p3, p4] = entry["image"].split("/")[-4:]
             base = "https://dynasty-scans-proxy.nanoskript.dev/dynasty-scans-image"
-            proxied_url = f"{base}/{p1}/{p2}/{p3}/{p4}"
-            async with session.get(proxied_url) as response:
+            proxied_url = f"{base}/{'/'.join(entry['image'].split('/')[2:])}"
+            async with session.get(proxied_url + buster) as response:
                 proxied_body = await response.read()
             proxied_time = time.time() - start
 
             start = time.time()
             original_url = "https://dynasty-scans.com" + entry['image']
-            async with session.get(original_url) as response:
+            async with session.get(original_url + buster) as response:
                 original_body = await response.read()
             original_time = time.time() - start
 
