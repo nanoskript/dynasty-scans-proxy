@@ -3,7 +3,7 @@ import concurrent.futures
 import io
 
 import aiohttp
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse, Response
 from PIL import Image
@@ -26,9 +26,9 @@ def process_image(data):
     return image.getvalue()
 
 
-@app.get("/dynasty-scans-image/{p1}/{p2}/{p3}/{p4}")
-async def route_dynasty_scans_image(p1: str, p2: str, p3: str, p4: str):
-    url = f"https://dynasty-scans.com/system/releases/{p1}/{p2}/{p3}/{p4}"
+@app.get("/dynasty-scans-image/{path:path}")
+async def route_dynasty_scans_image(request: Request, path: str):
+    url = f"https://dynasty-scans.com/system/{path}?{request.query_params}"
     async with client_session.get(url) as response:
         data = await response.read()
 

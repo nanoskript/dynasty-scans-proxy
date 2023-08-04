@@ -17,12 +17,12 @@
 
     function replaceLink(s) {
         const base = "https://dynasty-scans-proxy.nanoskript.dev/dynasty-scans-image";
-        const pattern = /\/system\/releases\/([^/]+)\/([^/]+)\/([^/]+)\/([^"]+)/;
+        const pattern = /\/system\/(.+)/;
         const match = s.match(pattern);
         if (!match) return s;
 
-        const [_match, p1, p2, p3, p4] = match;
-        return `${base}/${p1}/${p2}/${p3}/${p4}`;
+        const [_match, path] = match;
+        return `${base}/${path}`;
     }
 
     // Hijack reader image sourcing.
