@@ -5,8 +5,8 @@
 // @description  Requests proxied images to make them load faster.
 // @author       Nanoskript
 // @match        https://dynasty-scans.com/chapters/*
+// @match        https://dynasty-scans.com/images/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=dynasty-scans.com
-// @downloadURL  https://github.com/nanoskript/dynasty-scans-proxy/raw/main/proxy.user.js
 // @supportURL   https://github.com/nanoskript/dynasty-scans-proxy/issues
 // @grant        none
 // @run-at       document-body
@@ -42,7 +42,8 @@
     $(() => {
         // Replace source in initial image.
         // Note: The request on page load will still be sent to origin servers.
-        const image = document.querySelector("#image > img");
+        // This request will normally be prematurely cancelled.
+        const image = document.querySelector("#image > img, .image > img");
         image.src = replaceLink(image.src);
     });
 })();
