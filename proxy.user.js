@@ -2,7 +2,7 @@
 // @name         Dynasty Scans Proxy
 // @namespace    https://nanoskript.dev/
 // @version      0.1
-// @description  Requests proxied images to make them load faster.
+// @description  Requests proxied images to make them load faster and adds preload functionality.
 // @author       Nanoskript
 // @match        https://dynasty-scans.com/chapters/*
 // @match        https://dynasty-scans.com/images/*
@@ -45,5 +45,36 @@
         // This request will normally be prematurely cancelled.
         const image = document.querySelector("#image > img, .image > img");
         image.src = replaceLink(image.src);
+    });
+
+    $(() => {
+        // Add preload functionality.
+        const pageList = document.querySelector(".pages-list");
+        if (!pageList) return;
+
+        // Add button.
+        const button = document.createElement("button");
+        button.style.marginBottom = "0.5rem";
+        button.textContent = "Preload";
+
+        button.onclick = async () => {
+            button.disabled = true;
+            for (let index = 0; index < pages.length; ++index) {
+                // Style link.
+                const link = document.querySelector(`a[href="#${index + 1}"]`);
+                link.style.fontWeight = "bold";
+                link.style.color = "slateblue";
+
+                // Prefetch image.
+                await fetch(pages[index].image, {mode: "no-cors"});
+                link.style.color = "green";
+            }
+
+            // Enable button to indicate completion.
+            button.disabled = false;
+        };
+
+        pageList.style.top = 0;
+        pageList.insertAdjacentElement("afterbegin", button);
     });
 })();
