@@ -37,6 +37,19 @@ on
 Tampermonkey's icon near your browser's address bar. You can check if the proxy server is online
 by checking if [this page](https://dynasty-scans-proxy.nanoskript.dev/) loads.
 
+As an additional feature, the userscript adds a `Preload` button that loads all the images for a chapter in the
+background:
+
+<img src="docs/preload.png" width="384px">
+
+The image that is currently loading is colored in blue. Images that have been preloaded are colored in green. If you
+just want the preloading functionality
+without the proxying, here is the preloading script in the bookmarklet format:
+
+```js
+javascript:(async()=>{for(let e=0;e<pages.length;++e){let l=document.querySelector(`a[href="#${e+1}"]`);l.style.fontWeight="bold",l.style.color="slateblue",await fetch(pages[e].image,{mode:"no-cors"}),l.style.color="green"}})();
+```
+
 ## Caveats
 
 The images do not use lossless compression. This means there may be very minor image degradation compared to requesting
