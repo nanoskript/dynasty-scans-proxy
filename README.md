@@ -35,7 +35,7 @@ is fast.
 If you're experiencing issues, or if the proxy is offline, disable the userscript in Tampermonkey's settings by clicking
 on
 Tampermonkey's icon near your browser's address bar. You can check if the proxy server is online
-by checking if [this page](https://dynasty-scans-proxy.nanoskript.dev/) loads.
+by checking if [this page](https://dynasty-scans-proxy.nsk.sh/) loads.
 
 As an additional feature, the userscript adds a `Preload` button that loads all the images for a chapter in the
 background:

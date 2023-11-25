@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Dynasty Scans Proxy
-// @namespace    https://nanoskript.dev/
-// @version      0.1
+// @namespace    https://nsk.sh/
+// @version      0.2
 // @description  Requests proxied images to make them load faster and adds preload functionality.
 // @author       Nanoskript
 // @match        https://dynasty-scans.com/chapters/*
@@ -16,7 +16,7 @@
     'use strict';
 
     function replaceLink(s) {
-        const base = "https://dynasty-scans-proxy.nanoskript.dev/dynasty-scans-image";
+        const base = "https://dynasty-scans-proxy.nsk.sh/dynasty-scans-image";
         const pattern = /\/system\/(.+)/;
         const match = s.match(pattern);
         if (!match) return s;
