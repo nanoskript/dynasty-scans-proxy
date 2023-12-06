@@ -3,6 +3,16 @@
 Image proxy for [Dynasty Scans](https://dynasty-scans.com/) that is geographically close to Dynasty Scans' servers and
 compresses images into the WebP format.
 
+## Deprecation notice
+
+As of May 4, 2024, Dynasty Scans now serves images in the WebP format:
+
+> Image conversion from .png/.jpg to .webp for web view to save on bandwidth when delivering images on the website. This
+> means downloaded archives are untouched and remain exactly as the scanlator/volunteer uploaded it.
+
+I will keep `dynasty-scans-proxy` up for the foreseeable future, but it may
+no longer be beneficial to use it.
+
 ## Why use this?
 
 If you are not close to Europe (where Dynasty Scans' servers are located), the time it takes to load an image may be
@@ -47,7 +57,12 @@ just want the preloading functionality
 without the proxying, here is the preloading script in the bookmarklet format:
 
 ```js
-javascript:(async()=>{for(let e=0;e<pages.length;++e){let l=document.querySelector(`a[href="#${e+1}"]`);l.style.fontWeight="bold",l.style.color="slateblue",await fetch(pages[e].image,{mode:"no-cors"}),l.style.color="green"}})();
+javascript:(async () => {
+  for (let e = 0; e < pages.length; ++e) {
+    let l = document.querySelector(`a[href="#${e + 1}"]`);
+    l.style.fontWeight = "bold", l.style.color = "slateblue", await fetch(pages[e].image, {mode: "no-cors"}), l.style.color = "green"
+  }
+})();
 ```
 
 ## Caveats

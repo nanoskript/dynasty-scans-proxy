@@ -40,7 +40,7 @@ async def run_test():
             # Request from proxy first to avoid
             # possible warm start advantage.
             start = time.time()
-            base = "https://dynasty-scans-proxy.nanoskript.dev/dynasty-scans-image"
+            base = "https://dynasty-scans-proxy.nsk.sh/dynasty-scans-image"
             proxied_url = f"{base}/{'/'.join(entry['image'].split('/')[2:])}"
             async with session.get(proxied_url + buster) as response:
                 proxied_body = await response.read()
