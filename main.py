@@ -6,12 +6,13 @@ import aiohttp
 from fastapi import FastAPI, Request
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse, Response
-from PIL import Image
+from PIL import Image, ImageFile
 
 client_session = aiohttp.ClientSession()
 pool = concurrent.futures.ProcessPoolExecutor()
 app = FastAPI(title="dynasty-scans-proxy")
 app.add_middleware(CORSMiddleware, allow_origins=["*"])
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 @app.get("/", include_in_schema=False)
