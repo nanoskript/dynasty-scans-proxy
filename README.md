@@ -5,13 +5,14 @@ compresses images into the WebP format.
 
 ## Deprecation notice
 
-As of May 4, 2024, Dynasty Scans now serves images in the WebP format:
+As of 4 May 2024, Dynasty Scans now serves images in the WebP format:
 
 > Image conversion from .png/.jpg to .webp for web view to save on bandwidth when delivering images on the website. This
 > means downloaded archives are untouched and remain exactly as the scanlator/volunteer uploaded it.
 
-I will keep `dynasty-scans-proxy` up for the foreseeable future, but it may
-no longer be beneficial to use it.
+As of 24 May 2024, the proxy server is no longer active and requests are routed
+directly to Dynasty Scans' servers. It is no longer beneficial to use this script.
+If you do not use the preload functionality, you should remove it.
 
 ## Why use this?
 

@@ -1,0 +1,7 @@
+name = "dynasty-scans-proxy"
+main = "worker.js"
+compatibility_date = "2023-11-08"
+
+routes = [
+    { pattern = "dynasty-scans-proxy.nsk.sh/*", zone_name = "nsk.sh" }
+]

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Dynasty Scans Proxy
 // @namespace    https://nsk.sh/
-// @version      0.2
+// @version      0.3
 // @description  Requests proxied images to make them load faster and adds preload functionality.
 // @author       Nanoskript
 // @match        https://dynasty-scans.com/chapters/*
@@ -15,37 +15,37 @@
 (function () {
     'use strict';
 
-    function replaceLink(s) {
-        const base = "https://dynasty-scans-proxy.nsk.sh/dynasty-scans-image";
-        const pattern = /\/system\/(.+)/;
-        const match = s.match(pattern);
-        if (!match) return s;
-
-        const [_match, path] = match;
-        return `${base}/${path}`;
-    }
-
-    // Hijack reader image sourcing.
-    // This script is ran after the body element appears but
-    // should complete before the DOM is fully loaded. Otherwise,
-    // the hijack will be unsuccessful.
-    $.fn.readerOriginal = $.fn.reader;
-    $.fn.reader = (pages, i) => {
-        // Replace links in page list.
-        for (const page of pages) {
-            page.image = replaceLink(page.image);
-        }
-
-        $("#reader").readerOriginal(pages, i);
-    };
-
-    $(() => {
-        // Replace source in initial image.
-        // Note: The request on page load will still be sent to origin servers.
-        // This request will normally be prematurely cancelled.
-        const image = document.querySelector("#image > img, .image > img");
-        image.src = replaceLink(image.src);
-    });
+    // function replaceLink(s) {
+    //     const base = "https://dynasty-scans-proxy.nsk.sh/dynasty-scans-image";
+    //     const pattern = /\/system\/(.+)/;
+    //     const match = s.match(pattern);
+    //     if (!match) return s;
+    //
+    //     const [_match, path] = match;
+    //     return `${base}/${path}`;
+    // }
+    //
+    // // Hijack reader image sourcing.
+    // // This script is ran after the body element appears but
+    // // should complete before the DOM is fully loaded. Otherwise,
+    // // the hijack will be unsuccessful.
+    // $.fn.readerOriginal = $.fn.reader;
+    // $.fn.reader = (pages, i) => {
+    //     // Replace links in page list.
+    //     for (const page of pages) {
+    //         page.image = replaceLink(page.image);
+    //     }
+    //
+    //     $("#reader").readerOriginal(pages, i);
+    // };
+    //
+    // $(() => {
+    //     // Replace source in initial image.
+    //     // Note: The request on page load will still be sent to origin servers.
+    //     // This request will normally be prematurely cancelled.
+    //     const image = document.querySelector("#image > img, .image > img");
+    //     image.src = replaceLink(image.src);
+    // });
 
     $(() => {
         // Add preload functionality.
